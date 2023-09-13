@@ -30,7 +30,8 @@
                 <label asp-for="Email" class="control-label"></label>
                 <input asp-for="Email" class="form-control" />
                 <span asp-validation-for="Email" class="text-danger"></span>
-            </div>
+                </div> 
+                <br>
                 <div class="form-group">
                     @*<label for="RolesDropdown">Select Role</label>*@
                     <select id="RolesDropdown" asp-for="SelectedRole" class="form-control">
@@ -42,6 +43,7 @@
                     </select>
                 </div>
             </div>
+            <br>
             <div class="col-md-4">
                 <div class="form-group">
                     <label asp-for="LastName" class="control-label"></label>
@@ -56,7 +58,6 @@
 
            
             </div>
-            <hr />
                 <hr />
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />

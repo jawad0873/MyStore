@@ -28,7 +28,7 @@ namespace MyStore.Controllers
                     FirstName = user.FirstName,
                     LastName = user.LastName,
                     Email = user.Email,
-                    Password = user.PasswordHash
+                  //  Password = user.PasswordHash
                 };
                 viewmodelist.Add(admmodel); 
             }
@@ -59,7 +59,7 @@ namespace MyStore.Controllers
 
             if (ModelState.IsValid)
             {
-                if (_userManager.FindByEmailAsync(user.Email) ==null)
+                if (_userManager.FindByEmailAsync(user.Email) !=null)
                 {
                    // var selectedrole = user.SelectedRole;
                     var selectedrole = new List<string> {user.SelectedRole };
@@ -69,8 +69,13 @@ namespace MyStore.Controllers
                     newuser.FirstName = user.FirstName;
                     newuser.LastName = user.LastName;
                     
+
+
                     //creating new user 
-                   await _userManager.CreateAsync(newuser, user.Password);
+                 var us =  await _userManager.CreateAsync(newuser, user.Password);
+                     
+                  
+                    
                     //assign role to newely created user
                     await _userManager.AddToRolesAsync(newuser, selectedrole);
 
