@@ -1,4 +1,5 @@
-﻿using MyStore.Models;
+﻿using MyStore.Areas.Identity.Data;
+using MyStore.Models;
 using MyStoreService.Infrastructure;
 using System;
 using System.Collections.Generic;
@@ -10,34 +11,40 @@ namespace MyStoreService.Repositories
 {
     public class CategoryRepo : ICategory
     {
+        private readonly MyStoreDbContext  _dbContext;  
+        public CategoryRepo(MyStoreDbContext dbContext)
+        {
+            _dbContext = dbContext;
+        }
+
         public void DeleteCategory(CategoryDM category)
         {
-            throw new NotImplementedException();
+            _dbContext.categories.Remove(category);  
         }
 
         public List<CategoryDM> GetAllCategories()
         {
-            throw new NotImplementedException();
+            return _dbContext.categories.ToList();
         }
 
         public CategoryDM GetCategoryById(int id)
         {
-            throw new NotImplementedException();
+            return _dbContext.categories.Where(e=>e.Id == id).FirstOrDefault();
         }
 
         public void InsertCategory(CategoryDM category)
         {
-            throw new NotImplementedException();
+            _dbContext.categories.Add(category);
         }
 
         public void Save()
         {
-            throw new NotImplementedException();
+            _dbContext.SaveChanges();
         }
 
         public void UpdateCategory(CategoryDM category)
         {
-            throw new NotImplementedException();
+            _dbContext.categories.Update(category);
         }
     }
 }

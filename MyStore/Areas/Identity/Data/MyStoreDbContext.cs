@@ -3,16 +3,23 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using MyStore.Areas.Identity.Data;
+using MyStore.Models;
 
 namespace MyStore.Areas.Identity.Data;
 
 public class MyStoreDbContext : IdentityDbContext<MyStoreUser>
 {
+
+    public DbSet<CategoryDM> categories { get; set; }
+    public DbSet<ProductDM> products { get; set; }
+    public DbSet<ProductCategoryDM> productcategories { get; set; }
+
     public MyStoreDbContext(DbContextOptions<MyStoreDbContext> options)
         : base(options)
     {
     }
 
+   
     protected override void OnModelCreating(ModelBuilder builder)
     {
         base.OnModelCreating(builder);
